@@ -1,0 +1,10 @@
+/*
+  * função de conversão: tranforma tudo que é pixel para rem para ficar melhor adaptação entre dispositivos
+  * cada pixel convertido para rem tem que ser dividido por 16
+*/
+
+//Convert pixel to rem
+@function rem-calc($size) {
+  $value: $size / 16;
+  @return #{value}rem; //template string to SCSS
+}
