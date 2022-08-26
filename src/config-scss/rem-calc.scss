@@ -6,5 +6,5 @@
 //Convert pixel to rem
 @function rem-calc($size) {
   $value: $size / 16;
-  @return #{value}rem; //template string to SCSS
+  @return #{$value}rem; //template string to SCSS
 }

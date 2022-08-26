@@ -1,0 +1,14 @@
+/*
+  * Host: estringe a minupulação ao componente em questão
+*/
+
+@import '../../../config-scss/rem-calc.scss';
+
+:host{
+  //Alinhamento
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: rem-calc(40) 0;
+
+}
