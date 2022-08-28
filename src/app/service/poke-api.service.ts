@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +16,23 @@ export class PokeApiService {
   ) { }
 
   get apiListAllPokemons(): Observable<any>{ //observable: observa o que acontece com a requisição
-    return this.http.get<any>(this.url).pipe(
-      tap( res => res ), //tap: trás uma informação por vez
+    return this.http.get<any>(this.url).pipe(// faz um get na url
+      tap( res => res ), //tap: trás um valor: retorna um objeto
       tap( res => {
-        console.log(res);
+        res.results.map( (respokemons: any) => { // pega o results da api e mapeia ele: interando no map e criando novos objetos: retorna um name e uma url:
+          this.apiGetPokemons(respokemons.url).subscribe( // pega a url e faz um novo get pegando status
+            res => respokemons.status = res
+          );
+        });
       })
+    );
+  }
+
+  public apiGetPokemons(url: string): Observable<any>{
+    return this.http.get<any>(url).pipe(
+      map(
+        res => res
+      )
     )
   }
 }
