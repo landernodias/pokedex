@@ -10,7 +10,7 @@ export class PokeListComponent implements OnInit {
 
   private setAllPokemons: any;
   public getAllPokemons: any;
-
+  public apiError: boolean = false;
 
   constructor(
     private pokeApiService: PokeApiService, //injeção de dependência
@@ -22,6 +22,9 @@ export class PokeListComponent implements OnInit {
         this.setAllPokemons = res.results; // busca a lista dos pokemon
         this.getAllPokemons = this.setAllPokemons; //atribui ela a um get
         // console.log(this.getAllPokemons)
+      },
+      error => {
+        this.apiError = true
       }
     );
   }
@@ -32,7 +35,6 @@ export class PokeListComponent implements OnInit {
       (res: any)  => {
         return !res.name.indexOf(value.toLowerCase());
       })
-
       this.getAllPokemons = filter;
   }
 
