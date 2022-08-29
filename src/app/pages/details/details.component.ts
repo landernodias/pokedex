@@ -26,7 +26,7 @@ export class DetailsComponent implements OnInit {
     this.getPokemon;
   }
 
-  get getPokemon() {
+  public getPokemon() {
     const id = this.activedRoute.snapshot.params['id']; // pego o id do pokemon clicado
     const pokemon = this.pokeApiPokemons.apiGetPokemons(`${this.urlPokemon}/${id}`); // usa o serviço para pegar um poquemon especifico apartir do id
     const name = this.pokeApiPokemons.apiGetPokemons(`${this.urlName}/${id}`); // pega o nome de um pokemom apartir de um id
@@ -41,7 +41,6 @@ export class DetailsComponent implements OnInit {
         this.apiError = true
       }
     );
-
-    return console.log(id);
+    // return console.log(id);
   }
 }
